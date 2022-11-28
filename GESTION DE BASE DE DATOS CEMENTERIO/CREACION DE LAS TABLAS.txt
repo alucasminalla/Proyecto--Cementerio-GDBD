@@ -1,0 +1,548 @@
+/*==============================================================*/
+/* DBMS name:      SAP SQL Anywhere 16                          */
+/* Created on:     26/11/2022 1:07:28                           */
+/*==============================================================*/
+
+
+if exists(select 1 from sys.sysforeignkey where role='FK_BOVEDA_EST_CONTI_ESTRUCTU') then
+    alter table BOVEDA
+       delete foreign key FK_BOVEDA_EST_CONTI_ESTRUCTU
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_BOVEDA_FAM_ADQUI_FAM_PROP') then
+    alter table BOVEDA
+       delete foreign key FK_BOVEDA_FAM_ADQUI_FAM_PROP
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_CERTIFIC_FAM_SOLIC_FAM_PROP') then
+    alter table CERTIFICADO
+       delete foreign key FK_CERTIFIC_FAM_SOLIC_FAM_PROP
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_CERTIFIC_PER_GENER_PERSONAL') then
+    alter table CERTIFICADO
+       delete foreign key FK_CERTIFIC_PER_GENER_PERSONAL
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_ESTRUCTU_MAN_POSEE_MANZANA') then
+    alter table ESTRUCTURA
+       delete foreign key FK_ESTRUCTU_MAN_POSEE_MANZANA
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_FAM_PROP_CAN_RADIC_CANTON') then
+    alter table FAM_PROPIETARIO
+       delete foreign key FK_FAM_PROP_CAN_RADIC_CANTON
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_INCIDENT_BOV_SUCIT_BOVEDA') then
+    alter table INCIDENTE
+       delete foreign key FK_INCIDENT_BOV_SUCIT_BOVEDA
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_MANZANA_CEM_TIENE_CEMENTER') then
+    alter table MANZANA
+       delete foreign key FK_MANZANA_CEM_TIENE_CEMENTER
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_PAGOS_FAM_SALDA_FAM_PROP') then
+    alter table PAGOS
+       delete foreign key FK_PAGOS_FAM_SALDA_FAM_PROP
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_PAGOS_PER_GENER_PERSONAL') then
+    alter table PAGOS
+       delete foreign key FK_PAGOS_PER_GENER_PERSONAL
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_PAGOS_TRA_GENER_TRAMITE') then
+    alter table PAGOS
+       delete foreign key FK_PAGOS_TRA_GENER_TRAMITE
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_PERSONAL_CEM_CONTR_CEMENTER') then
+    alter table PERSONAL
+       delete foreign key FK_PERSONAL_CEM_CONTR_CEMENTER
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_REPORTE_PER_EMITE_PERSONAL') then
+    alter table REPORTE
+       delete foreign key FK_REPORTE_PER_EMITE_PERSONAL
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_REP_TIEN_REP_TIENE_REPORTE') then
+    alter table REP_TIENE_INC
+       delete foreign key FK_REP_TIEN_REP_TIENE_REPORTE
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_REP_TIEN_REP_TIENE_INCIDENT') then
+    alter table REP_TIENE_INC
+       delete foreign key FK_REP_TIEN_REP_TIENE_INCIDENT
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_TRAMITE_BOV_GENER_BOVEDA') then
+    alter table TRAMITE
+       delete foreign key FK_TRAMITE_BOV_GENER_BOVEDA
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_TRAMITE_FAL_TRA_FALLECID') then
+    alter table TRAMITE
+       delete foreign key FK_TRAMITE_FAL_TRA_FALLECID
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_TRAMITE_FAM_SOLIC_FAM_PROP') then
+    alter table TRAMITE
+       delete foreign key FK_TRAMITE_FAM_SOLIC_FAM_PROP
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_TRAMITE_PER_REALI_PERSONAL') then
+    alter table TRAMITE
+       delete foreign key FK_TRAMITE_PER_REALI_PERSONAL
+end if;
+
+if exists(select 1 from sys.sysforeignkey where role='FK_TRAMITE_TRA_GENER_PAGOS') then
+    alter table TRAMITE
+       delete foreign key FK_TRAMITE_TRA_GENER_PAGOS
+end if;
+
+drop index if exists BOVEDA.FAM_ADQUIERE_BOV_FK;
+
+drop index if exists BOVEDA.EST_CONTIENE_BOV_FK;
+
+drop index if exists BOVEDA.BOVEDA_PK;
+
+drop table if exists BOVEDA;
+
+drop index if exists CANTON.CANTON_PK;
+
+drop table if exists CANTON;
+
+drop index if exists CEMENTERIO.CEMENTERIO_PK;
+
+drop table if exists CEMENTERIO;
+
+drop index if exists CERTIFICADO.FAM_SOLICITA_CER_FK;
+
+drop index if exists CERTIFICADO.PER_GENERA_CER_FK;
+
+drop index if exists CERTIFICADO.CERTIFICADO_PK;
+
+drop table if exists CERTIFICADO;
+
+drop index if exists ESTRUCTURA.MAN_POSEEN_EST_FK;
+
+drop index if exists ESTRUCTURA.ESTRUCTURA_PK;
+
+drop table if exists ESTRUCTURA;
+
+drop index if exists FALLECIDO.FALLECIDO_PK;
+
+drop table if exists FALLECIDO;
+
+drop index if exists FAM_PROPIETARIO.CAN_RADICAN_FAM_FK;
+
+drop index if exists FAM_PROPIETARIO.FAM_PROPIETARIO_PK;
+
+drop table if exists FAM_PROPIETARIO;
+
+drop index if exists INCIDENTE.BOV_SUCITAR_INC_FK;
+
+drop index if exists INCIDENTE.INCIDENTE_PK;
+
+drop table if exists INCIDENTE;
+
+drop index if exists MANZANA.CEM_TIENE_MAN_FK;
+
+drop index if exists MANZANA.MANZANA_PK;
+
+drop table if exists MANZANA;
+
+drop index if exists PAGOS.TRA_GENERA_PAG2_FK;
+
+drop index if exists PAGOS.PER_GENERA_PAG_FK;
+
+drop index if exists PAGOS.FAM_SALDA_PAG_FK;
+
+drop index if exists PAGOS.PAGOS_PK;
+
+drop table if exists PAGOS;
+
+drop index if exists PERSONAL.CEM_CONTRATA_PER_FK;
+
+drop index if exists PERSONAL.PERSONAL_PK;
+
+drop table if exists PERSONAL;
+
+drop index if exists REPORTE.PER_EMITE_REP_FK;
+
+drop index if exists REPORTE.REPORTE_PK;
+
+drop table if exists REPORTE;
+
+drop index if exists REP_TIENE_INC.REP_TIENE_INC2_FK;
+
+drop index if exists REP_TIENE_INC.REP_TIENE_INC_FK;
+
+drop index if exists REP_TIENE_INC.REP_TIENE_INC_PK;
+
+drop table if exists REP_TIENE_INC;
+
+drop index if exists TRAMITE.TRA_GENERA_PAG_FK;
+
+drop index if exists TRAMITE.FAM_SOLICITA_TRA_FK;
+
+drop index if exists TRAMITE.FAL_TRA_FK;
+
+drop index if exists TRAMITE.BOV_GENERA_TRA_FK;
+
+drop index if exists TRAMITE.PER_REALIZA_TRA_FK;
+
+drop index if exists TRAMITE.TRAMITE_PK;
+
+drop table if exists TRAMITE;
+
+/*==============================================================*/
+/* Table: BOVEDA                                                */
+/*==============================================================*/
+create table BOVEDA 
+(
+   ID_BOVEDA            integer                        not null,
+   ID_ESTRUCTURA        integer                        null,
+   ID_FAMPROPIETARIO    integer                        null,
+   ESTADO_BOVEDA        varchar(15)                    null,
+   NOMBRE_BOVEDA        varchar(20)                    null,
+   constraint PK_BOVEDA primary key (ID_BOVEDA)
+);
+
+
+/*==============================================================*/
+/* Index: EST_CONTIENE_BOV_FK                                   */
+/*==============================================================*/
+create index EST_CONTIENE_BOV_FK on BOVEDA (
+ID_ESTRUCTURA ASC
+);
+
+/*==============================================================*/
+/* Index: FAM_ADQUIERE_BOV_FK                                   */
+/*==============================================================*/
+create index FAM_ADQUIERE_BOV_FK on BOVEDA (
+ID_FAMPROPIETARIO ASC
+);
+
+/*==============================================================*/
+/* Table: CANTON                                                */
+/*==============================================================*/
+create table CANTON 
+(
+   ID_CANTON            integer                        not null,
+   NOMBRE_CANTON        varchar(40)                    null,
+   constraint PK_CANTON primary key (ID_CANTON)
+);
+
+
+/*==============================================================*/
+/* Table: CEMENTERIO                                            */
+/*==============================================================*/
+create table CEMENTERIO 
+(
+   ID_CEMENTERIO        integer                        not null,
+   DIRECCION_CEMETERIO  char(30)                       null,
+   NOMBRE_CEMENTERIO    varchar(30)                    null,
+   TAMANIO_CEMEMTERIO   varchar(10)                    null,
+   constraint PK_CEMENTERIO primary key (ID_CEMENTERIO)
+);
+
+
+/*==============================================================*/
+/* Table: CERTIFICADO                                           */
+/*==============================================================*/
+create table CERTIFICADO 
+(
+   ID_CERTIFICADO       integer                        not null,
+   ID_FAMPROPIETARIO    integer                        null,
+   ID_PERSONAL          integer                        null,
+   FECHA_CERTIFICADO    date                           null,
+   EMISOR_CERFICADO     varchar(60)                    null,
+   TIPO_CERTIFICADO     varchar(40)                    null,
+   DESCRIPCION_CERTIFICADO long varchar                  null,
+   ESTADO_CERTICADO     varchar(50)                    null,
+   constraint PK_CERTIFICADO primary key (ID_CERTIFICADO)
+);
+
+
+
+/*==============================================================*/
+/* Index: PER_GENERA_CER_FK                                     */
+/*==============================================================*/
+create index PER_GENERA_CER_FK on CERTIFICADO (
+ID_PERSONAL ASC
+);
+
+/*==============================================================*/
+/* Index: FAM_SOLICITA_CER_FK                                   */
+/*==============================================================*/
+create index FAM_SOLICITA_CER_FK on CERTIFICADO (
+ID_FAMPROPIETARIO ASC
+);
+
+/*==============================================================*/
+/* Table: ESTRUCTURA                                            */
+/*==============================================================*/
+create table ESTRUCTURA 
+(
+   ID_ESTRUCTURA        integer                        not null,
+   ID_MANZANA           integer                        null,
+   AREA_ESTRUCTURA      varchar(20)                    not null,
+   TIPO_ESTRUCTURA      varchar(30)                    null,
+   DIMENSION_ESTRUCTURA varchar(30)                    null,
+   CANTIDABOVEDAS_ESTRUCTURA varchar(8)                     null,
+   constraint PK_ESTRUCTURA primary key (ID_ESTRUCTURA)
+);
+
+
+
+/*==============================================================*/
+/* Index: MAN_POSEEN_EST_FK                                     */
+/*==============================================================*/
+create index MAN_POSEEN_EST_FK on ESTRUCTURA (
+ID_MANZANA ASC
+);
+
+/*==============================================================*/
+/* Table: FALLECIDO                                             */
+/*==============================================================*/
+create table FALLECIDO 
+(
+   ID_FALLECIDO         integer                        not null,
+   NOMBRE_FALLECIDO     varchar(30)                    null,
+   APELLIDO_FALLECIDO   varchar(30)                    null,
+   CAUSA_MUERTE         varchar(30)                    null,
+   FECHA_NACIMIENTO     date                           null,
+   FECHA_MUERTE         date                           null,
+   constraint PK_FALLECIDO primary key (ID_FALLECIDO)
+);
+
+
+/*==============================================================*/
+/* Table: FAM_PROPIETARIO                                       */
+/*==============================================================*/
+create table FAM_PROPIETARIO 
+(
+   ID_FAMPROPIETARIO    integer                        not null,
+   ID_CANTON            integer                        null,
+   CEDULA__FAM integer                        not null,
+   NOMBRE_FAM varchar(30)                    null,
+   APELLIDO_FAM  varchar(30)                    null,
+   FECHANACIEMINTO_FAM  date                           null,
+   LUGARDERESIDECIA_FAM  varchar(40)                    null,
+   TELEFONO_FAM integer                        null,
+   TELEFONOEMER_FAM  integer                        null,
+   constraint PK_FAM_PROPIETARIO primary key (ID_FAMPROPIETARIO)
+);
+
+
+/*==============================================================*/
+/* Index: CAN_RADICAN_FAM_FK                                    */
+/*==============================================================*/
+create index CAN_RADICAN_FAM_FK on FAM_PROPIETARIO (
+ID_CANTON ASC
+);
+
+/*==============================================================*/
+/* Table: INCIDENTE                                             */
+/*==============================================================*/
+create table INCIDENTE 
+(
+   ID_INCIDENTE         integer                        not null,
+   ID_BOVEDA            integer                        null,
+   AREA_INCIDENTE       varchar(5)                     null,
+   TIPO_INCIDENTE       varchar(30)                    null,
+   BOVEDA_INCIDENTE     varchar(30)                    null,
+   HORA_INCIDENTE       varchar(10)                    null,
+   constraint PK_INCIDENTE primary key (ID_INCIDENTE)
+);
+
+/*==============================================================*/
+/* Index: BOV_SUCITAR_INC_FK                                    */
+/*==============================================================*/
+create index BOV_SUCITAR_INC_FK on INCIDENTE (
+ID_BOVEDA ASC
+);
+
+/*==============================================================*/
+/* Table: MANZANA                                               */
+/*==============================================================*/
+create table MANZANA 
+(
+   ID_MANZANA           integer                        not null,
+   ID_CEMENTERIO        integer                        null,
+   AREA_MANZANA         varchar(3)                     null,
+   NUMERO_MANZAN        integer                        null,
+   constraint PK_MANZANA primary key (ID_MANZANA)
+);
+
+/*==============================================================*/
+/* Index: CEM_TIENE_MAN_FK                                      */
+/*==============================================================*/
+create index CEM_TIENE_MAN_FK on MANZANA (
+ID_CEMENTERIO ASC
+);
+/*==============================================================*/
+/* Table: PAGOS                                                 */
+/*==============================================================*/
+create table PAGOS 
+(
+   ID_PAGO              integer                        not null,
+   ID_TRAMITE           integer                        null,
+   ID_FAMPROPIETARIO    integer                        null,
+   ID_PERSONAL          integer                        null,
+   PRECIO_TOTAL         numeric(10)                    null,
+   FORMA_DE_PAGO        varchar(40)                    null,
+   CANTIDAD_PAGADA      numeric(10)                    null,
+   constraint PK_PAGOS primary key (ID_PAGO)
+);
+
+/*==============================================================*/
+/* Index: FAM_SALDA_PAG_FK                                      */
+/*==============================================================*/
+create index FAM_SALDA_PAG_FK on PAGOS (
+ID_FAMPROPIETARIO ASC
+);
+
+/*==============================================================*/
+/* Index: PER_GENERA_PAG_FK                                     */
+/*==============================================================*/
+create index PER_GENERA_PAG_FK on PAGOS (
+ID_PERSONAL ASC
+);
+
+/*==============================================================*/
+/* Index: TRA_GENERA_PAG2_FK                                    */
+/*==============================================================*/
+create index TRA_GENERA_PAG2_FK on PAGOS (
+ID_TRAMITE ASC
+);
+
+/*==============================================================*/
+/* Table: PERSONAL                                              */
+/*==============================================================*/
+create table PERSONAL 
+(
+   ID_PERSONAL          integer                        not null,
+   ID_CEMENTERIO        integer                        null,
+   NOMBRE_PERSONAL      varchar(30)                    null,
+   APELLIDO_PERSONAL    varchar(30)                    null,
+   CEDULA_PERSONAL      varchar(10)                    null,
+   TELEFONO_PERSONAL    varchar(10)                    null,
+   DIRECCION_PERSONAL   varchar(30)                    null,
+   EDAD_PERSONAL        varchar(2)                     null,
+   TIPO_PERSONAL        varchar(30)                    null,
+   AREA_PERSONAL        varchar(30)                    null,
+   ANIO_INGRESO         date                           null,
+   constraint PK_PERSONAL primary key (ID_PERSONAL)
+);
+
+
+/*==============================================================*/
+/* Index: CEM_CONTRATA_PER_FK                                   */
+/*==============================================================*/
+create index CEM_CONTRATA_PER_FK on PERSONAL (
+ID_CEMENTERIO ASC
+);
+
+/*==============================================================*/
+/* Table: REPORTE                                               */
+/*==============================================================*/
+create table REPORTE 
+(
+   ID_REPORTE           integer                        not null,
+   ID_PERSONAL          integer                        null,
+   NOMBRE_REPORTE       varchar(50)                    null,
+   FECHA_REPORTE        date                           null,
+   DESCRIPCION_REPORTE  varchar(500)                   null,
+   CANTIDAD_INCIDENTES  integer                        null,
+   constraint PK_REPORTE primary key (ID_REPORTE)
+);
+
+
+/*==============================================================*/
+/* Index: PER_EMITE_REP_FK                                      */
+/*==============================================================*/
+create index PER_EMITE_REP_FK on REPORTE (
+ID_PERSONAL ASC
+);
+
+/*==============================================================*/
+/* Table: REP_TIENE_INC                                         */
+/*==============================================================*/
+create table REP_TIENE_INC 
+(
+   ID_REPORTE           integer                        not null,
+   ID_INCIDENTE         integer                        not null,
+   constraint PK_REP_TIENE_INC primary key (ID_REPORTE, ID_INCIDENTE)
+);
+/*==============================================================*/
+/* Index: REP_TIENE_INC_FK                                      */
+/*==============================================================*/
+create index REP_TIENE_INC_FK on REP_TIENE_INC (
+ID_REPORTE ASC
+);
+
+/*==============================================================*/
+/* Index: REP_TIENE_INC2_FK                                     */
+/*==============================================================*/
+create index REP_TIENE_INC2_FK on REP_TIENE_INC (
+ID_INCIDENTE ASC
+);
+
+/*==============================================================*/
+/* Table: TRAMITE                                               */
+/*==============================================================*/
+create table TRAMITE 
+(
+   ID_TRAMITE           integer                        not null,
+   ID_FALLECIDO         integer                        null,
+   ID_PERSONAL          integer                        null,
+   ID_BOVEDA            integer                        null,
+   ID_FAMPROPIETARIO    integer                        null,
+   ANIO_TRAMITE         date                           null,
+   TIPO_TRAMITE         varchar(50)                    null,
+   DESCRIPCION_TRAMITE  long varchar                            null,
+   ESTADO_PAGO          varchar(50)                    null,
+   constraint PK_TRAMITE primary key (ID_TRAMITE)
+);
+
+
+/*==============================================================*/
+/* Index: PER_REALIZA_TRA_FK                                    */
+/*==============================================================*/
+create index PER_REALIZA_TRA_FK on TRAMITE (
+ID_PERSONAL ASC
+);
+
+/*==============================================================*/
+/* Index: BOV_GENERA_TRA_FK                                     */
+/*==============================================================*/
+create index BOV_GENERA_TRA_FK on TRAMITE (
+ID_BOVEDA ASC
+);
+
+/*==============================================================*/
+/* Index: FAL_TRA_FK                                            */
+/*==============================================================*/
+create index FAL_TRA_FK on TRAMITE (
+ID_FALLECIDO ASC
+);
+
+/*==============================================================*/
+/* Index: FAM_SOLICITA_TRA_FK                                   */
+/*==============================================================*/
+create index FAM_SOLICITA_TRA_FK on TRAMITE (
+ID_FAMPROPIETARIO ASC
+);
+
+/*==============================================================*/
+/* Index: TRA_GENERA_PAG_FK                                     */
+/*==============================================================*/
+create index TRA_GENERA_PAG_FK on TRAMITE (
+ID_PAGO ASC
+);

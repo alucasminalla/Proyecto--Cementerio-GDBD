@@ -1,0 +1,76 @@
+alter table BOVEDA
+   add constraint FK_BOVEDA_EST_CONTI_ESTRUCTU foreign key (ID_ESTRUCTURA)
+      references ESTRUCTURA (ID_ESTRUCTURA);
+
+alter table BOVEDA
+   add constraint FK_BOVEDA_FAM_ADQUI_FAM_PROP foreign key (ID_FAMPROPIETARIO)
+      references FAM_PROPIETARIO (ID_FAMPROPIETARIO);
+
+alter table CERTIFICADO
+   add constraint FK_CERTIFIC_FAM_SOLIC_FAM_PROP foreign key (ID_FAMPROPIETARIO)
+      references FAM_PROPIETARIO (ID_FAMPROPIETARIO);
+
+alter table CERTIFICADO
+   add constraint FK_CERTIFIC_PER_GENER_PERSONAL foreign key (ID_PERSONAL)
+      references PERSONAL (ID_PERSONAL);
+
+alter table ESTRUCTURA
+   add constraint FK_ESTRUCTU_MAN_POSEE_MANZANA foreign key (ID_MANZANA)
+      references MANZANA (ID_MANZANA);
+
+alter table FAM_PROPIETARIO
+   add constraint FK_FAM_PROP_CAN_RADIC_CANTON foreign key (ID_CANTON)
+      references CANTON (ID_CANTON);
+
+alter table INCIDENTE
+   add constraint FK_INCIDENT_BOV_SUCIT_BOVEDA foreign key (ID_BOVEDA)
+      references BOVEDA (ID_BOVEDA);
+
+alter table MANZANA
+   add constraint FK_MANZANA_CEM_TIENE_CEMENTER foreign key (ID_CEMENTERIO)
+      references CEMENTERIO (ID_CEMENTERIO);
+
+alter table PAGOS
+   add constraint FK_PAGOS_FAM_SALDA_FAM_PROP foreign key (ID_FAMPROPIETARIO)
+      references FAM_PROPIETARIO (ID_FAMPROPIETARIO);
+
+alter table PAGOS
+   add constraint FK_PAGOS_PER_GENER_PERSONAL foreign key (ID_PERSONAL)
+      references PERSONAL (ID_PERSONAL);
+
+alter table PAGOS
+   add constraint FK_PAGOS_TRA_GENER_TRAMITE foreign key (ID_TRAMITE)
+      references TRAMITE (ID_TRAMITE);
+
+alter table PERSONAL
+   add constraint FK_PERSONAL_CEM_CONTR_CEMENTER foreign key (ID_CEMENTERIO)
+      references CEMENTERIO (ID_CEMENTERIO);
+
+alter table REPORTE
+   add constraint FK_REPORTE_PER_EMITE_PERSONAL foreign key (ID_PERSONAL)
+      references PERSONAL (ID_PERSONAL);
+
+alter table REP_TIENE_INC
+   add constraint FK_REP_TIEN_REP_TIENE_REPORTE foreign key (ID_REPORTE)
+      references REPORTE (ID_REPORTE);
+
+alter table REP_TIENE_INC
+   add constraint FK_REP_TIEN_REP_TIENE_INCIDENT foreign key (ID_INCIDENTE)
+      references INCIDENTE (ID_INCIDENTE);
+
+alter table TRAMITE
+   add constraint FK_TRAMITE_BOV_GENER_BOVEDA foreign key (ID_BOVEDA)
+      references BOVEDA (ID_BOVEDA);
+
+alter table TRAMITE
+   add constraint FK_TRAMITE_FAL_TRA_FALLECID foreign key (ID_FALLECIDO)
+      references FALLECIDO (ID_FALLECIDO);
+
+alter table TRAMITE
+   add constraint FK_TRAMITE_FAM_SOLIC_FAM_PROP foreign key (ID_FAMPROPIETARIO)
+      references FAM_PROPIETARIO (ID_FAMPROPIETARIO);
+
+alter table TRAMITE
+   add constraint FK_TRAMITE_PER_REALI_PERSONAL foreign key (ID_PERSONAL)
+      references PERSONAL (ID_PERSONAL);
+	  

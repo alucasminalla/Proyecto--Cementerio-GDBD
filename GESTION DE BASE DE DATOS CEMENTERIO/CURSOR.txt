@@ -1,0 +1,32 @@
+--CURSOR   
+--CURSOR   
+--CURSOR
+SET SERVEROUTPUT ON;
+DECLARE
+CURSOR CURSOR_TRAMITE  IS 
+select extract(year from tramite.ANIO_TRAMITE ) as anio_tramite, personal.nombre_personal ||' '||  personal.Apellido_personal as Empleado, tramite.tipo_tramite,
+count(tramite.tipo_tramite) as Numero_tramites
+	from personal 
+	inner join tramite
+	on tramite.id_personal = personal.id_personal
+	group by  extract(year from tramite.ANIO_TRAMITE ), personal.nombre_personal ||' '|| personal.Apellido_personal,tramite.tipo_tramite order by ANIO_TRAMITE asc;
+	suma int;
+
+BEGIN
+suma :=0;
+    for registro in CURSOR_TRAMITE 
+	loop
+        suma := suma + registro.Numero_tramites;      
+		dbms_output.put_line('EL EMPLEADO/A: '||registro.Empleado||' ha realizado el tramite de '|| registro.tipo_tramite ||'  '|| registro.Numero_tramites
+        | ' vez/veces durante el año '||registro.anio_tramite);
+    end loop;
+    dbms_output.put_line('Cantidad total de tramites realizados en cementero: ' || SUMA);
+    end;
+
+
+
+----- CONSULTA REPORST------
+select extract(year from tramite.ANIO_TRAMITE ) as anio_tramite, tramite.tipo_tramite,
+count(tramite.tipo_tramite)
+	from tramite
+	group by extract(year from tramite.ANIO_TRAMITE ),tramite.tipo_tramite order by ANIO_TRAMITE asc
